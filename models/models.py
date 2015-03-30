@@ -8,7 +8,7 @@ class course(models.Model):
     name = fields.Char(string="Title", required=True)
     description = fields.Text()
 
-    responsible_id =fields.Many2one('res.users',
+    responsible_id = fields.Many2one('res.users',
     	ondelete='set null', string="Responsible", index=True)
     session_ids = fields.One2many (
     	'openacademy.session', 'course_id', string="Sessions")
@@ -27,3 +27,13 @@ class Session(models.Model):
 	course_id = fields.Many2one('openacademy.course',
 		ondelete='cascade', string="Course", required=True)
 	attendee_ids = fields.Many2many('res.partner', string="Attendees")
+
+	taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
+
+	@api_one
+	@api_depends('seats', 'attendee_ids')
+	def _taken_seats(self):
+		if not self.seats:
+			self.taken_seats = 0.0
+		else:
+			self.taken_seats = 100.0 * len(self.attendee_ids) / self.seats
