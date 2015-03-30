@@ -30,8 +30,8 @@ class Session(models.Model):
 
 	taken_seats = fields.Float(string="Taken seats", compute='_taken_seats')
 
-	@api_one
-	@api_depends('seats', 'attendee_ids')
+	@api.one
+	@api.depends('seats', 'attendee_ids')
 	def _taken_seats(self):
 		if not self.seats:
 			self.taken_seats = 0.0
