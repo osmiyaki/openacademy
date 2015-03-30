@@ -17,7 +17,7 @@
           <!-- no description for this one-->
         </record>
         <record id="course2" model="openacademy.course">
-          <field name="name">Course 1</field>
+          <field name="name">Course 2</field>
           <field name="description">Course 2's description</field>
         </record>
     </data>
