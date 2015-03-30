@@ -8,5 +8,5 @@ class Partner(models.Model):
 	# instructors
 	instructor = fields.Boolean("Instructor", default=False)
 
-	sessions_ids = fields.Many2many('openacademy.session',
+	session_ids = fields.Many2many('openacademy.session',
 		string="Attended Sessions", readonly=True)
