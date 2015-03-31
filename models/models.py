@@ -12,6 +12,15 @@ class course(models.Model):
     	ondelete='set null', string="Responsible", index=True)
     session_ids = fields.One2many (
     	'openacademy.session', 'course_id', string="Sessions")
+    _sql_constraints = [
+    	('name_desciption_check',
+    	 'CHECK(name != description),'
+    	 "The title of the course should not be the description"),
+
+    	('name_unique',
+    	 'UNIQUE(name)',
+    	 "The course title must be unique"),
+    ]
 
 class Session(models.Model):
 	_name = 'openacademy.session'
