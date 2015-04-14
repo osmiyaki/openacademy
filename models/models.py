@@ -30,7 +30,7 @@ class course(models.Model):
 
     _sql_constraints = [
     	('name_desciption_check',
-    	 'CHECK(name != description),'
+    	 'CHECK(name != description)',
     	 "The title of the course should not be the description"),
 
     	('name_unique',
@@ -110,3 +110,4 @@ class Session(models.Model):
 	def _check_instructor_not_in_attendees(self):
 		if self.instructor_id and self.instructor_id in self.attendee_ids:
 			raise exceptions.ValidationError("A session's instructor can't be an attendee")
+			
