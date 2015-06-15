@@ -26,7 +26,7 @@ class course(models.Model):
     		new_name = u"Copy of {} ({})".format(self.name, copied_count)
 
     	default['name'] = new_name
-    	return super (Course, self).copy(default)
+    	return super(course, self).copy(default)
 
     _sql_constraints = [
     	('name_desciption_check',
@@ -110,4 +110,4 @@ class Session(models.Model):
 	def _check_instructor_not_in_attendees(self):
 		if self.instructor_id and self.instructor_id in self.attendee_ids:
 			raise exceptions.ValidationError("A session's instructor can't be an attendee")
-			
+
